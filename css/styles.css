@@ -107,3 +107,211 @@ a { color: inherit; text-decoration: none; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+/* ========================================
+   ETAPA 3 - CARTA Y DEDICATORIAS DE REYMI
+======================================== */
+
+.letter-intro {
+  text-align: center;
+  margin: -25px 0 28px;
+  color: var(--mauve);
+  font: italic 1.1rem 'Cormorant Garamond', serif;
+  letter-spacing: .04em;
+}
+
+.letter-card {
+  perspective: 1000px;
+  overflow: visible;
+}
+
+.letter-card.is-open {
+  transform: translateY(-8px);
+  pointer-events: none;
+}
+
+.letter-stamp {
+  transition: opacity .35s, transform .35s;
+}
+
+.letter-card.is-open .letter-stamp {
+  opacity: 0;
+  transform: translate(-50%, -70%) scale(.5);
+}
+
+.envelope-flap {
+  backface-visibility: hidden;
+}
+
+.letter-message {
+  position: relative;
+  max-width: 760px;
+  padding: clamp(30px, 6vw, 65px);
+  margin: 45px auto 0;
+  border-radius: 4px;
+  background:
+    linear-gradient(rgba(255,253,249,.97), rgba(255,253,249,.97));
+  border: 1px solid rgba(182,107,140,.2);
+  box-shadow: 0 25px 70px rgba(119,69,91,.13);
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  line-height: 1.95;
+}
+
+.letter-message[hidden] {
+  display: none;
+}
+
+.letter-message:not([hidden]) {
+  display: block;
+  animation: letterAppear .9s ease both;
+}
+
+.letter-decoration,
+.letter-decoration-bottom {
+  text-align: center;
+  color: var(--mauve);
+  font-size: 1.5rem;
+  letter-spacing: .4em;
+  margin-bottom: 28px;
+}
+
+.letter-decoration-bottom {
+  margin: 35px 0 0;
+}
+
+.letter-greeting {
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 600;
+  color: var(--wine);
+  line-height: 1.2;
+  margin-bottom: 30px !important;
+}
+
+.letter-message p {
+  margin-bottom: 23px;
+}
+
+.letter-final-words {
+  color: var(--wine);
+  font-weight: 600;
+  font-style: italic;
+  margin-top: 30px !important;
+}
+
+.letter-signature {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 40px;
+  gap: 5px;
+}
+
+.letter-signature span {
+  color: #927785;
+  font-size: .95rem;
+}
+
+.letter-signature strong {
+  color: var(--wine);
+  font: 2.5rem 'Allura', cursive;
+}
+
+.special-section {
+  overflow: hidden;
+}
+
+.dedications-grid {
+  align-items: stretch;
+}
+
+.dedication-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 300px;
+  padding: 40px 30px;
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity .7s ease, transform .7s ease,
+    box-shadow .3s ease;
+}
+
+.dedications-grid.is-visible .dedication-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dedications-grid.is-visible .dedication-card:nth-child(2) {
+  transition-delay: .18s;
+}
+
+.dedications-grid.is-visible .dedication-card:nth-child(3) {
+  transition-delay: .36s;
+}
+
+.dedication-card:hover {
+  box-shadow: 0 20px 45px rgba(119,69,91,.13);
+}
+
+.dedication-card > span {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+}
+
+.dedication-card h3 {
+  font-size: 2rem;
+}
+
+.dedication-card p {
+  line-height: 1.9;
+}
+
+.dedication-card small {
+  display: block;
+  margin-top: 22px;
+  color: var(--mauve);
+  font: italic 1.1rem 'Cormorant Garamond', serif;
+}
+
+@keyframes letterAppear {
+  from {
+    opacity: 0;
+    transform: translateY(35px) scale(.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 600px) {
+  .letter-card {
+    height: 230px;
+  }
+
+  .letter-message {
+    padding: 30px 23px;
+    margin-top: 32px;
+  }
+
+  .letter-greeting {
+    font-size: 2.1rem;
+  }
+
+  .dedication-card {
+    min-height: auto;
+    padding: 35px 25px;
+  }
+
+  .letter-signature strong {
+    font-size: 2.2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dedication-card {
+    transition: none;
+  }
+}
+
