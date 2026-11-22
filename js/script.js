@@ -64,14 +64,33 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
   // Carta interactiva.
+  // Carta interactiva y aparición de dedicatorias.
   const openLetter = document.getElementById('openLetter');
   const letterMessage = document.getElementById('letterMessage');
+  const dedicationsGrid = document.getElementById('dedicationsGrid');
+
   openLetter.addEventListener('click', () => {
     const isOpen = openLetter.classList.toggle('is-open');
+
     openLetter.setAttribute('aria-expanded', String(isOpen));
+
     letterMessage.hidden = !isOpen;
-    openLetter.querySelector('.letter-hint').textContent = isOpen ? 'Carta abierta ♡' : 'Toca para abrir';
-    if (isOpen) setTimeout(() => letterMessage.scrollIntoView({ behavior: 'smooth', block: 'center' }), 180);
+
+    openLetter.querySelector('.letter-hint').textContent =
+      isOpen ? 'Carta abierta ♡' : 'Toca para abrir';
+
+    if (isOpen) {
+      setTimeout(() => {
+        letterMessage.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      }, 350);
+
+      dedicationsGrid.classList.add('is-visible');
+    } else {
+      dedicationsGrid.classList.remove('is-visible');
+    }
   });
 
   // Galería ampliable.
